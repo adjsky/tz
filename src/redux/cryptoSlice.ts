@@ -124,7 +124,10 @@ export const cryptoSlice = createSlice({
             state.estimatedExchangeAmount = action.payload.data.toAmount
             state.estimatedExchangeStatus = "finished"
           } else {
-            console.log(action.payload)
+            state.minimalExchangeAmount = null
+            state.estimatedExchangeAmount = null
+            state.estimatedExchangeStatus = "error"
+            state.errorMessage = "This pair is disabled now"
           }
         } else {
           state.estimatedExchangeAmount = null

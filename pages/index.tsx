@@ -35,8 +35,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
   }
 
-  console.log(response)
-
   return {
     props: {
       message: response.message

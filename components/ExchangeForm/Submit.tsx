@@ -52,7 +52,7 @@ type SubmitProps = {
 function Submit({ errorMessage }: SubmitProps) {
   const error = useAppSelector((state) => state.crypto.errorMessage)
 
-  const hasError = errorMessage || error != null
+  const hasError = typeof errorMessage != "undefined" || error != null
 
   return (
     <Container>
