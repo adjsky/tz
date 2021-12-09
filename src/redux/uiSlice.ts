@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 export type UiState = {
-  istablet: boolean
+  isTablet: boolean
   isDesktop: boolean
 }
 
 const initialState: UiState = {
-  istablet: false,
+  isTablet: false,
   isDesktop: true
 }
 
@@ -14,17 +14,17 @@ export const uiSlice = createSlice({
   name: "ui",
   initialState,
   reducers: {
-    settablet: (state) => {
-      state.istablet = true
+    setTablet: (state) => {
+      state.isTablet = true
       state.isDesktop = false
     },
     setDesktop: (state) => {
       state.isDesktop = true
-      state.istablet = false
+      state.isTablet = false
     }
   }
 })
 
-export const { settablet, setDesktop } = uiSlice.actions
+export const { setTablet, setDesktop } = uiSlice.actions
 
 export default uiSlice.reducer

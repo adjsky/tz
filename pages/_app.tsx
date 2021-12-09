@@ -5,7 +5,7 @@ import { useRouter } from "next/router"
 import { Provider } from "react-redux"
 import store from "@/src/redux/store"
 import { useAppDispatch } from "@/src/redux/hooks"
-import { settablet, setDesktop } from "@/src/redux/uiSlice"
+import { setTablet, setDesktop } from "@/src/redux/uiSlice"
 import { tablet } from "@/src/constants"
 import "@/styles/globals.css"
 
@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const handleResize = () => {
       if (window.innerWidth <= tablet) {
-        dispatch(settablet())
+        dispatch(setTablet())
       } else {
         dispatch(setDesktop())
       }

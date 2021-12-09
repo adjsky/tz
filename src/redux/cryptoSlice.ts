@@ -7,7 +7,7 @@ import type {
 import type { RootState } from "./store"
 import type { Currency } from "@/src/BackendClient/types"
 
-type Status = "pending" | "finished" | "error"
+type Status = "pending" | "idle" | "error"
 
 export type CryptoState = {
   errorMessage: string | null
@@ -20,7 +20,7 @@ export type CryptoState = {
 }
 
 const initialState: CryptoState = {
-  estimatedExchangeStatus: "pending",
+  estimatedExchangeStatus: "idle",
   minimalExchangeStatus: "pending",
   fromCrypto: null,
   toCrypto: null,
@@ -100,7 +100,7 @@ export const cryptoSlice = createSlice({
         if (action.payload) {
           if (action.payload.data) {
             state.minimalExchangeAmount = action.payload.data.minAmount
-            state.minimalExchangeStatus = "finished"
+            state.minimalExchangeStatus = "idle"
           } else {
             state.minimalExchangeAmount = null
             state.estimatedExchangeAmount = null
@@ -122,7 +122,7 @@ export const cryptoSlice = createSlice({
         if (action.payload) {
           if (action.payload.data) {
             state.estimatedExchangeAmount = action.payload.data.toAmount
-            state.estimatedExchangeStatus = "finished"
+            state.estimatedExchangeStatus = "idle"
           } else {
             state.minimalExchangeAmount = null
             state.estimatedExchangeAmount = null

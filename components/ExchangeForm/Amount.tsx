@@ -72,7 +72,7 @@ function Amount({
       onValueSet("")
     }
 
-    if (status == "finished") {
+    if (status == "idle") {
       if (!userEntered || value == "") {
         if (value == "") {
           setUserEntered(false)
