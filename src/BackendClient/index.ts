@@ -34,13 +34,15 @@ class BackendClient {
   }
 
   public async getEstimatedExchangeAmount(
-    params: GetEstimatedExchangeAmountProps
+    params: GetEstimatedExchangeAmountProps,
+    signal: AbortSignal
   ): Promise<GetEstimatedExchangeAmount> {
     return handleRequest({
       url: `${this.apiHost}/exchange/estimated-amount`,
       method: "GET",
       headers: this.headers,
-      params
+      params,
+      signal
     })
   }
 }

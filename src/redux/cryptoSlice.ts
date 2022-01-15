@@ -59,24 +59,30 @@ export const updateEstimatedExchangeAmount = createAsyncThunk<
   {
     state: RootState
   }
->("crypto/updateEstimatedExchangeAmount", async (fromAmount, { getState }) => {
-  const state = getState()
-  const toCrypto = state.crypto.toCrypto
-  const fromCrypto = state.crypto.fromCrypto
-  if (toCrypto && fromCrypto && fromAmount) {
-    const response = await BackendClient.getEstimatedExchangeAmount({
-      fromCurrency: fromCrypto.ticker,
-      toCurrency: toCrypto.ticker,
-      fromNetwork: fromCrypto.network,
-      toNetwork: toCrypto.network,
-      fromAmount
-    })
+>(
+  "crypto/updateEstimatedExchangeAmount",
+  async (fromAmount, { getState, signal }) => {
+    const state = getState()
+    const toCrypto = state.crypto.toCrypto
+    const fromCrypto = state.crypto.fromCrypto
+    if (toCrypto && fromCrypto && fromAmount) {
+      const response = await BackendClient.getEstimatedExchangeAmount(
+        {
+          fromCurrency: fromCrypto.ticker,
+          toCurrency: toCrypto.ticker,
+          fromNetwork: fromCrypto.network,
+          toNetwork: toCrypto.network,
+          fromAmount
+        },
+        signal
+      )
 
-    return response
+      return response
+    }
+
+    return null
   }
-
-  return null
-})
+)
 
 export const cryptoSlice = createSlice({
   name: "crypto",
